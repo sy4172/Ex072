@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     TextView showResult;
     Random rnd;
     String answer;
+    boolean flag1,flag2,flag3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +38,37 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Enter all parameters", Toast.LENGTH_SHORT).show();
         }
         else{
-            Intent si = new Intent(this,solveEquation.class);
-            si.putExtra("strA",eTA.getText().toString());
-            si.putExtra("strB",eTB.getText().toString());
-            si.putExtra("strC",eTC.getText().toString());
-            startActivityForResult(si,SOURCE);
+            if (eTA.getText().toString().equals("0") || eTA.getText().toString().equals("-0")){
+                Toast.makeText(this, "The parameter A should be bigger or smaller than zero. Try again.", Toast.LENGTH_SHORT).show();
+                flag1 = false;
+            }
+            else{
+                flag1 = true;
+            }
+
+            if(eTB.getText().toString().equals("-0") || eTB.getText().toString().equals(".0") || eTC.getText().toString().equals("-0") || eTC.getText().toString().equals(".0")){
+                Toast.makeText(this, "Try again.", Toast.LENGTH_SHORT).show();
+                flag2 = false;
+            }
+            else{
+                flag2 = true;
+            }
+
+            if (eTA.getText().toString().endsWith("-") || eTA.getText().toString().endsWith(".") || eTA.getText().toString().startsWith(".") || eTB.getText().toString().endsWith("-") || eTB.getText().toString().endsWith(".") || eTB.getText().toString().startsWith(".") || eTC.getText().toString().endsWith("-") || eTC.getText().toString().endsWith(".") || eTC.getText().toString().startsWith(".")){
+                Toast.makeText(this, "Try again.", Toast.LENGTH_SHORT).show();
+                flag3 = false;
+            }
+            else{
+                flag3 = true;
+            }
+
+            if (flag1 && flag2 && flag3){
+                Intent si = new Intent(this,solveEquation.class);
+                si.putExtra("strA",eTA.getText().toString());
+                si.putExtra("strB",eTB.getText().toString());
+                si.putExtra("strC",eTC.getText().toString());
+                startActivityForResult(si,SOURCE);
+            }
         }
     }
 
