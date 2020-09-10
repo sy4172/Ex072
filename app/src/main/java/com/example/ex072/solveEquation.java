@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class solveEquation extends AppCompatActivity {
 
     boolean flag1,flag2;
-    double [] solution;
+    double solution0, solution1;
     String strA,strB,strC,answer,part1,part2,part3,space;
     WebView view;
     TextView resultDisplay;
@@ -27,7 +27,7 @@ public class solveEquation extends AppCompatActivity {
         strA = gi.getStringExtra("strA");
         strB = gi.getStringExtra("strB");
         strC = gi.getStringExtra("strC");
-        solution = new double[]{Double.NaN,Double.NaN};
+        solution0 = solution1 = Double.NaN;
         answer = "";
         part1 = "https://www.google.com/search?hl=iw&source=hp&ei=w22tXvf8NMmUlwS9hoUo&q=";
         part2 = "&oq=";
@@ -165,29 +165,29 @@ public class solveEquation extends AppCompatActivity {
         double c = Double.parseDouble(strC);
         double discriminant = b*b-4*a*c;
 
-        if (discriminant > 0){
-            solution[0] = (-b-Math.sqrt(discriminant))/2*a;
-            solution[1] = (-b+Math.sqrt(discriminant))/2*a;
-            if ((Math.abs(solution[1] - (int) solution[1]) > 0) && ((Math.abs(solution[1] - (int) solution[1])) < 1) && (Math.abs(solution[0] - (int) solution[0]) == 0)){
-                answer = "There are two solutions: " + (int) solution[0] + "   " + solution[1];
+        if (discriminant >= 0){
+            solution0 = (-b+Math.sqrt(discriminant))/(2*a);
+            solution1 = (-b-Math.sqrt(discriminant))/(2*a);
+            if ((Math.abs(solution1 - (int) solution1) > 0) && ((Math.abs(solution1 - (int) solution1)) < 1) && (Math.abs(solution0 - (int) solution0) == 0)){
+                answer = "There are two solutions: " + (int) solution0 + "   " + solution1;
             }
-            else if ((Math.abs(solution[0] - (int) solution[0]) > 0) && ((Math.abs(solution[0] - (int) solution[0])) < 1) && (Math.abs(solution[1] - (int) solution[1]) == 0)){
-                answer = "There are two solutions: " + solution[0] + "   " + (int) solution[1];
+            else if ((Math.abs(solution0 - (int) solution0) > 0) && ((Math.abs(solution0 - (int) solution0)) < 1) && (Math.abs(solution1 - (int) solution1) == 0)){
+                answer = "There are two solutions: " + solution0 + "   " + (int) solution1;
             }
-            else if ((Math.abs(solution[1] - (int) solution[1]) > 0) && ((Math.abs(solution[1] - (int) solution[1])) < 1) && ((Math.abs(solution[0] - (int) solution[0])) > 0) && ((Math.abs(solution[0] - (int) solution[0])) < 1)){
-                answer = "There are two solutions: " + solution[0] + "   " + solution[1];
+            else if ((Math.abs(solution1 - (int) solution1) > 0) && ((Math.abs(solution1 - (int) solution1)) < 1) && ((Math.abs(solution0 - (int) solution0)) > 0) && ((Math.abs(solution0 - (int) solution0)) < 1)){
+                answer = "There are two solutions: " + solution0 + "   " + solution1;
             }
             else{
-                answer = "There are two solutions: " + (int) solution[0] + "   " + (int) solution[1];
+                answer = "There are two solutions: " + (int) solution0 + "   " + (int) solution1;
             }
         }
         else if (discriminant < 0){
             answer = "There is no solution";
         }
         else{
-            solution[0] = (-b-Math.sqrt(discriminant))/2*a;
-            if (String.valueOf(solution[0]).endsWith(".0")){
-                answer = "There is one solution: " + (int) solution[0];
+            solution0 = (-b-Math.sqrt(discriminant))/2*a;
+            if (String.valueOf(solution0).endsWith(".0")){
+                answer = "There is one solution: " + (int) solution0;
             }
         }
         resultDisplay.setText(answer);

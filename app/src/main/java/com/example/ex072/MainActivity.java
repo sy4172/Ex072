@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fillRandomChoises(View view) {
-        eTA.setText(String.valueOf(rnd.nextDouble()));
-        eTB.setText(String.valueOf(rnd.nextDouble()));
-        eTC.setText(String.valueOf(rnd.nextDouble()));
+        eTA.setText(String.valueOf(rnd.nextDouble()*(100-(-100))+(-100)));
+        eTB.setText(String.valueOf(rnd.nextDouble()*(100-(-100))+(-100)));
+        eTC.setText(String.valueOf(rnd.nextDouble()*(100-(-100))+(-100)));
     }
 
     @Override
