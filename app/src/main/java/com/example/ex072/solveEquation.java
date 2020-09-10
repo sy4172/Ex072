@@ -165,7 +165,7 @@ public class solveEquation extends AppCompatActivity {
         double c = Double.parseDouble(strC);
         double discriminant = b*b-4*a*c;
 
-        if (discriminant >= 0){
+        if (discriminant > 0){
             solution0 = (-b+Math.sqrt(discriminant))/(2*a);
             solution1 = (-b-Math.sqrt(discriminant))/(2*a);
             if ((Math.abs(solution1 - (int) solution1) > 0) && ((Math.abs(solution1 - (int) solution1)) < 1) && (Math.abs(solution0 - (int) solution0) == 0)){
